@@ -1,6 +1,6 @@
 import {
   BrowserRouter as Router,
-  Routes,
+  Switch,
   Route
 } from "react-router-dom";
 import Chat from './Chat'
@@ -10,11 +10,17 @@ function App() {
   return (
     <Router>
       <div className="container-sm">
-        <switch>
-          <Route path="/" element={<Login />} />
-          <Route path="/reg" element={<Register />} />
-          <Route path="/chat" element={<Chat />} />
-          </switch>
+        <Switch>
+          <Route path="/">
+            <Login />
+          </Route>
+          <Route path="/reg">
+            <Register />
+            </Route>
+          <Route path="/chat">
+            <Chat />
+            </Route>
+          </Switch>
       </div>
     </Router>
   );
