@@ -39,10 +39,12 @@ function Login() {
           autoComplete="current-password"
         />
       </div>
-      <div className="row loginButton">
-        <Button variant="contained" href="/chat">
+      <div className="row loginButton loginBut">
+        <Link to="/chat">
+        <Button className="loginBut" variant="outlined">
           Login
         </Button>
+        </Link>
       </div>
       <div className="row">
         <Link1
@@ -55,8 +57,10 @@ function Login() {
       </div>
       <hr/>
       <div className="row regButton">
-        <Link variant="outlined" to="/reg">
+        <Link to="/reg">
+          <Button variant="outlined">
           Register
+          </Button>
         </Link>
       </div>
     </div>

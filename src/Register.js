@@ -1,5 +1,6 @@
 import React from "react";
 import "./Login.css";
+import { Link } from "react-router-dom";
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
@@ -73,13 +74,11 @@ function Register() {
       </div>
       <div className="row loginButton">
       <hr/>
-      <Button variant="outlined" color="primary" href="/" onClick={handleToggle}>
+      <Link to="/">
+      <Button variant="outlined" color="primary" onClick={handleToggle}>
         Register
       </Button>
-      <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
-      {/* <Button variant="contained" href="/">Register</Button> */}
+      </Link>
       </div>
     </div>
   );
