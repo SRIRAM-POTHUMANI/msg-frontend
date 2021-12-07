@@ -10,15 +10,11 @@ function App() {
   return (
     <Router>
       <div className="container-sm">
-        <Routes>
+        <switch>
           <Route path="/" element={<Login />} />
-        </Routes>
-        <Routes>
           <Route path="/reg" element={<Register />} />
-        </Routes>
-        <Routes>
           <Route path="/chat" element={<Chat />} />
-        </Routes>
+          </switch>
       </div>
     </Router>
   );
