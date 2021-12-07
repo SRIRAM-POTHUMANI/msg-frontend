@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Login.css";
 import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Link from '@material-ui/core/Link';
+import Link1 from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,19 +45,19 @@ function Login() {
         </Button>
       </div>
       <div className="row">
-        <Link
+        <Link1
           component="button"
           variant="body2"
           href="/forgotpw"
         >
           Forgot Password
-        </Link>
+        </Link1>
       </div>
       <hr/>
       <div className="row regButton">
-        <Button variant="outlined" href="/reg">
+        <Link variant="outlined" to="/reg">
           Register
-        </Button>
+        </Link>
       </div>
     </div>
   );
