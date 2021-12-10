@@ -120,7 +120,7 @@ export default function Chat() {
   };
   useEffect(() => {
     // userlist();
-    sync();
+    // sync();
     scrollToBottom();
   });
 
