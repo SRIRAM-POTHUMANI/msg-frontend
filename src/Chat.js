@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import Pusher from "pusher-js";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
@@ -99,9 +100,10 @@ export default function Chat() {
     setUsername(existingUser);
     setrecievername(prompt("Please enter to name"));
   }, []);
-  // const pusher = new Pusher('7b837337ccb8aebc6007', {
-  //   cluster: 'ap2'
-  // });
+  var pusher = new Pusher("7b837337ccb8aebc6007", {
+    cluster: "ap2",
+  });
+
   const [messages, setMessages] = useState([]);
   const [userList, setuserList] = useState([]);
   const messagesEndRef = useRef(null);
@@ -118,23 +120,23 @@ export default function Chat() {
       setuserList(res.data);
     });
   };
-  useEffect(() => {
-    // userlist();
-    // sync();
-    scrollToBottom();
-  });
-
-  //pusher
   // useEffect(() => {
-  //   const channel = pusher.subscribe('messages');
-  //   channel.bind('inserted', function(newMessage) {
-  //     sync()
-  //   });
+  //   userlist();
+  //   sync();
+  //   scrollToBottom();
+  // });
 
-  //   return ()=>{
-  //         channel.unbind_all();
-  //       };
-  //  },  [messages])
+  // pusher
+  useEffect(() => {
+    const channel = pusher.subscribe("mern-msg");
+    channel.bind("inserted", function (newMessage) {
+      sync();
+    });
+
+    return () => {
+      channel.unbind_all();
+    };
+  }, [messages]);
 
   //drawers
   const classes = useStyles();
