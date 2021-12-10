@@ -119,7 +119,7 @@ export default function Chat() {
     });
   };
   useEffect(() => {
-    userlist();
+    // userlist();
     sync();
     scrollToBottom();
   });
