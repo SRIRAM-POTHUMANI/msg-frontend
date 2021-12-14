@@ -125,12 +125,17 @@ export default function Chat() {
   //   sync();
   //   scrollToBottom();
   // });
+  // ()=>{
+  // sync();
+  // userlist();
 
+  // }
   // pusher
   useEffect(() => {
     const channel = pusher.subscribe("mern-msg");
     channel.bind("inserted", function (newMessage) {
       sync();
+      userlist();
     });
 
     return () => {
@@ -141,7 +146,7 @@ export default function Chat() {
   //drawers
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -150,60 +155,10 @@ export default function Chat() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  console.log(userlist);
   return (
     <div className={classes.root}>
       <CssBaseline />
-      {/*       
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Mini variant drawer
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      </div>
-    
-            <div className="row">
-              <div className="col">
-              <Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        })}
-        classes={{
-          paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
-          }),
-        }}
-      >
-        <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-        
-      </Drawer>
-              </div> */}
 
       <AppBar
         position="fixed"
@@ -250,7 +205,7 @@ export default function Chat() {
         <Divider />
 
         <List>
-          {userList.map((users, index) => (
+          {userList.map((users) => (
             <ListItem button key={users._id}>
               <ListItemIcon>
                 <Avatar className={classes.small}></Avatar>
@@ -264,6 +219,7 @@ export default function Chat() {
       <main>
         <div className="chat fixed-bottom">
           <Chatbody messages={messages} name={username} toName={recievername} />
+          {scrollToBottom()}
         </div>
       </main>
     </div>
